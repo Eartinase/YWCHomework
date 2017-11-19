@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href='<?php echo base_url(); ?>assets/css/bootstrap-reboot.min.css' >
 	<link rel="stylesheet" type="text/css" href='<?php echo base_url(); ?>assets/css/css.css' >
 
+	
 </head>
 <body>
 	<?php $this->load->view('navbar'); ?>
@@ -26,25 +27,29 @@
 
 		</table>
 	</div>
+	<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$.ajax({
-				type:"get",
-				url:"https://ywc15.ywc.in.th/api/interview",
-				success: function(data){
-					result="";
-					for(i in data){
-						if(data[i].major == 'content'){
+		$(document).ready(function(){		
+		$.ajax({
+			type:"get",
+			url:"https://ywc15.ywc.in.th/api/interview",
+			success: function(data){
+				result="";
+				for(i in data){
+					if(data[i].firstName.startsWith('<?php echo $keyword ?>') || data[i].lastName.startsWith('<?php echo $keyword ?>')){
 						result+="<tr><td>"+data[i].firstName+"</td> <td>"+data[i].lastName+"</td><td>"+data[i].major+"</td><td>"+data[i].interviewRef+"</td></tr>";
 					}
-					}
-					$("#list").html(result);
 				}
-			});
+				if(result==""){
+					result = "<tr><td colspan='4' align='center'>No data</td></tr>";
+				}
+				$("#list").html(result);
+			}
 		});
-	</script>
-	
+	});
+</script>
+
 	<script src="<?php echo base_url(); ?>assets/js/bootstrap.bundle.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
 

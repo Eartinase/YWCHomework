@@ -23,6 +23,14 @@ class Hello extends CI_Controller {
 		$this->load->view('Content');
 	}
 
+	public function Search(){
+		$key = array(
+			'keyword' => $this->input->get('input')
+		);	
+		$this->load->view('Search', $key);
+	}
+
+
 }
 
 /* End of file Hello.php */
