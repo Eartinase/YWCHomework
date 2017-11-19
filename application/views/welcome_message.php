@@ -66,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</style>
 </head>
 <body>
-
+<?php redirect(base_url().'hello','refresh') ?>
 <div id="container">
 	<h1>Welcome to CodeIgniter!</h1>
 
