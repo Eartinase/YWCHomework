@@ -13,6 +13,7 @@
 	<?php $this->load->view('navbar'); ?>
 
 	<div class="container">
+		<h1 align="center">All Interviewer</h1>
 		<table class="table table-hover">
 			<thead>
 				<tr>
