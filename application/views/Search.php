@@ -14,41 +14,45 @@
 	<?php $this->load->view('navbar'); ?>
 
 	<div class="container">
-		<table class="table">
-			<tr>
-				<td>Name</td>
-				<td>Surname</td>
-				<td>Major</td>
-				<td>Ref</td>
-			</tr>
-
+		<table class="table  table-hover">
+			<thead>
+				<tr>
+					<td class="header">Number</td>
+					<td class="header">Name</td>
+					<td class="header">Surname</td>
+					<td class="header">Major</td>
+					<td class="header">Ref</td>
+				</tr>
+			</thead>
 			<tbody id="list">
 			</tbody>
 
 		</table>
 	</div>
 	<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){		
-		$.ajax({
-			type:"get",
-			url:"https://ywc15.ywc.in.th/api/interview",
-			success: function(data){
-				result="";
-				for(i in data){
-					if(data[i].firstName.startsWith('<?php echo $keyword ?>') || data[i].lastName.startsWith('<?php echo $keyword ?>')){
-						result+="<tr><td>"+data[i].firstName+"</td> <td>"+data[i].lastName+"</td><td>"+data[i].major+"</td><td>"+data[i].interviewRef+"</td></tr>";
+		$(document).ready(function(){	
+			var count = 0;	
+			$.ajax({
+				type:"get",
+				url:"https://ywc15.ywc.in.th/api/interview",
+				success: function(data){
+					result="";
+					for(i in data){
+						if(data[i].firstName.startsWith('<?php echo $keyword ?>') || data[i].lastName.startsWith('<?php echo $keyword ?>')){
+							count++;
+							result+="<tr><td>"+count+"</td><td>"+data[i].firstName+"</td> <td>"+data[i].lastName+"</td><td>"+data[i].major+"</td><td>"+data[i].interviewRef+"</td></tr>";
+						}
 					}
+					if(result==""){
+						result = "<tr><td colspan='4' align='center'>No data</td></tr>";
+					}
+					$("#list").html(result);
 				}
-				if(result==""){
-					result = "<tr><td colspan='4' align='center'>No data</td></tr>";
-				}
-				$("#list").html(result);
-			}
+			});
 		});
-	});
-</script>
+	</script>
 
 	<script src="<?php echo base_url(); ?>assets/js/bootstrap.bundle.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>

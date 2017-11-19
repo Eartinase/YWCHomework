@@ -13,13 +13,16 @@
 	<?php $this->load->view('navbar'); ?>
 
 	<div class="container">
-		<table class="table">
-			<tr>
-				<td>Name</td>
-				<td>Surname</td>
-				<td>Major</td>
-				<td>Ref</td>
-			</tr>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<td class="header">Number</td>
+					<td class="header">Name</td>
+					<td class="header">Surname</td>
+					<td class="header">Major</td>
+					<td class="header">Ref</td>
+				</tr>
+			</thead>
 
 			<tbody id="list">
 			</tbody>
@@ -29,15 +32,16 @@
 <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			var count = 0;
 			$.ajax({
 				type:"get",
 				url:"https://ywc15.ywc.in.th/api/interview",
 				success: function(data){
 					result="";
-					for(i in data){
-						
-						result+="<tr><td>"+data[i].firstName+"</td> <td>"+data[i].lastName+"</td><td>"+data[i].major+"</td><td>"+data[i].interviewRef+"</td></tr>";
-					}
+					for(i in data){						
+							count++;
+							result+="<tr><td>"+count+"</td><td>"+data[i].firstName+"</td> <td>"+data[i].lastName+"</td><td>"+data[i].major+"</td><td>"+data[i].interviewRef+"</td></tr>";
+						}
 					$("#list").html(result);
 				}
 			});
