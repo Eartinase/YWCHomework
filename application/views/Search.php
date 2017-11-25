@@ -23,6 +23,7 @@
 					<td class="header">Surname</td>
 					<td class="header">Major</td>
 					<td class="header">Ref</td>
+					<td class="header">Stalk :D</td>
 				</tr>
 			</thead>
 			<tbody id="list">
@@ -43,7 +44,9 @@
 					for(i in data){
 						if(data[i].firstName.startsWith('<?php echo $keyword ?>') || data[i].lastName.startsWith('<?php echo $keyword ?>')){
 							count++;
-							result+="<tr><td>"+count+"</td><td>"+data[i].firstName+"</td> <td>"+data[i].lastName+"</td><td>"+data[i].major+"</td><td>"+data[i].interviewRef+"</td></tr>";
+							result+="<tr><td>"+count+"</td><td>"+data[i].firstName+"</td><td>"+data[i].lastName+"</td><td>"+data[i].major+"</td><td>"+data[i].interviewRef
+							+"</td><td>"
+							+"<a target='_blank' class='btn btn-info' href='https://www.google.co.th/search?q="+data[i].firstName+'+'+data[i].lastName+"'>Stalk!</button></td></tr>";
 						}
 					}
 					if(result==""){
